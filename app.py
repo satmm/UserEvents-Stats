@@ -413,19 +413,6 @@ if df is not None:
         df['LogLevel'].value_counts().plot(kind='pie', ax=ax)
         st.pyplot(fig)
         
-        # Plot tag analysis 
-        st.subheader("Tag Analysis")
-        if 'Tag' in df.columns:
-            try:
-                wordcloud = WordCloud(width=800, height=400, background_color ='white').generate_from_text(' '.join(df['Tag'].dropna()))
-                fig, ax = plt.subplots()
-                ax.imshow(wordcloud, interpolation='bilinear')
-                ax.axis('off')
-                st.pyplot(fig)
-            except Exception as e:
-                st.error(f"Error generating word cloud: {str(e)}")
-        else:
-            st.error("Tag column not found in the DataFrame.")
     else:
         st.error("Timestamp column not found in the DataFrame.")
 else:
